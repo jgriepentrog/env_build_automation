@@ -52,14 +52,17 @@ echo "deb https://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/a
 
 #Dropbox
 #Set manually to xenial - update if available
-sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 5044912E
+sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E 
 echo "deb https://linux.dropbox.com/ubuntu/ xenial main" | sudo tee /etc/apt/sources.list.d/dropbox.list
 
 #Node (8 to match Lambda)
 nodeVersion=8
 curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
-echo "deb https://deb.nodesource.com/node_$nodeVersion.x $codename main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-echo "deb-src https://deb.nodesource.com/node_$nodeVersion.x $codename main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
+#Set manually to bionic - update as available
+#echo "deb https://deb.nodesource.com/node_$nodeVersion.x $codename main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+#echo "deb-src https://deb.nodesource.com/node_$nodeVersion.x $codename main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
+echo "deb https://deb.nodesource.com/node_$nodeVersion.x bionic main" | sudo tee /etc/apt/sources.list.d/nodesource.list && \
+echo "deb-src https://deb.nodesource.com/node_$nodeVersion.x bionic main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list && \
 
 #Yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -67,7 +70,9 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 
 #Docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $codename stable" | sudo tee /etc/apt/sources.list.d/docker.list
+#Set manually to bionic - update as available
+#echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $codename stable" | sudo tee /etc/apt/sources.list.d/docker.list
+echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" | sudo tee /etc/apt/sources.list.d/docker.list
    
 #Update package list to latest
 sudo apt-get update
@@ -90,7 +95,7 @@ sudo apt-get install -y build-essential && \
 sudo apt-get install -y google-chrome-stable && \
 sudo apt-get install -y keepass2 && \
 sudo apt-get install -y dropbox && \ 
-#sudo apt-get install -y python-gpgme
+sudo apt-get install -y python-gpgme && \
 sudo apt-get install -y keychain && \
 sudo apt-get install -y git && \
 sudo apt-get install -y code && \
@@ -99,8 +104,9 @@ sudo apt-get install -y yarn && \
 sudo apt-get install -y python-pip && \
 sudo apt-get install -y docker-ce
 
-#Set Up LivePatch
+#Install Snaps
 sudo snap install canonical-livepatch
+sudo snap install insomnia
 
 #VirtualBox Guest Additions (VM only)
 if [ $opt = $VM ]; then 
@@ -121,16 +127,17 @@ fi
 #Physical build packages
 if [ $opt = $Phys ]; then 
 	#Add repos
-	sudo add-apt-repository ppa:remmina-ppa-team/remmina-next
-	sudo add-apt-repository ppa:nathan-renniewaldock/flux
+	#Force to bionic for now - update when available
+	#sudo add-apt-repository ppa:nathan-renniewaldock/flux
+	echo "deb http://ppa.launchpad.net/nathan-renniewaldock/flux/ubuntu bionic main" | sudo tee /etc/apt/sources.list.d/nathan-renniewaldock-ubuntu-flux.list
+	echo "# deb-src http://ppa.launchpad.net/nathan-renniewaldock/flux/ubuntu bionic main" | sudo tee -a /etc/apt/sources.list.d/nathan-renniewaldock-ubuntu-flux.list
 
 	#Update package list to latest
 	sudo apt-get update
 
 	#Install packages
 	sudo snap install remmina
-	sudo apt-get install -y flux fluxgui
-	sudo apt-get install -y remmina remmina-plugin-rdp libfreerdp-plugins-standard
+	sudo apt-get install -y fluxgui
 	sudo apt-get install -y openvpn
 	sudo apt-get install -y network-manager-openvpn
 	sudo apt-get install -y network-manager-openvpn-gnome
@@ -165,9 +172,6 @@ fi
 #Type=Application
 #Categories=Development;
 #EOL
-
-#Insomnia REST
-sudo snap install insomnia
 
 #OpenSSL 1.1.0+
 #opensslVersion="openssl-1.1.0h"
