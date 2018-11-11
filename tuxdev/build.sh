@@ -1,12 +1,16 @@
 #!/bin/bash
 # Assumes Ubuntu Budgie 18.10 Minimal Install
 
-#Vars
+###Setup###
+
+##Env Vars##
 #NEED TO SET FOLLOWING VARS PRIOR TO RUNNING SCRIPT: username, gitRepos
 
+#Git Info#
 email="1390583+jgriepentrog@users.noreply.github.com"
 name="John Griepentrog"
 
+#Platform#
 VM="VM"
 Phys="Physical"
 Exit="Exit"
@@ -29,34 +33,35 @@ do
     esac
 done
 
-#Set up codename
+#Ubuntu Release Codename#
 source /etc/os-release
 codename=`lsb_release -cs`
 
-#Get kernel
+#Kernel
 kernel=`uname -r`
 
-#Add repos
+###Package Installs###
 
-#VS Code - Official
+##Add Repos##
+#VS Code - Official#
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
 sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 
-#KeePass - PPA
+#KeePass - PPA#
 sudo add-apt-repository ppa:jtaylor/keepass
 
-#Chrome
+#Chrome - Official#
 wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 echo "deb https://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
 
-#Dropbox
+#Dropbox - Official#
 #Set manually to xenial - update if available
 sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E 
 echo "deb https://linux.dropbox.com/ubuntu/ xenial main" | sudo tee /etc/apt/sources.list.d/dropbox.list
 
-#Node (8 to match Lambda)
-nodeVersion=8
+#Node#
+nodeVersion=8 #Match current AWS Lambda
 curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
 #Set manually to bionic - update as available
 #echo "deb https://deb.nodesource.com/node_$nodeVersion.x $codename main" | sudo tee /etc/apt/sources.list.d/nodesource.list
@@ -64,11 +69,11 @@ curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add 
 echo "deb https://deb.nodesource.com/node_$nodeVersion.x bionic main" | sudo tee /etc/apt/sources.list.d/nodesource.list && \
 echo "deb-src https://deb.nodesource.com/node_$nodeVersion.x bionic main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list && \
 
-#Yarn
+#Yarn#
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
-#Docker
+#Docker#
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 #Set manually to bionic - update as available
 #echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $codename stable" | sudo tee /etc/apt/sources.list.d/docker.list
@@ -77,16 +82,19 @@ echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" |
 #Update package list to latest
 sudo apt-get update
 
+##Packages Removals##
 #Remove unneeded / unused items
 sudo apt-get remove firefox -y
 
 #Clean up from removal
 sudo apt-get autoremove -y
 
-#Upgrade remainder
+##Package Upgrades##
 sudo apt-get upgrade -y
 
-#Install packages
+##Package Installs##
+
+#Apt#
 sudo apt-get install -y lightdm-settings && \
 sudo apt-get install -y gedit && \
 sudo apt-get install -y gthumb && \
@@ -102,14 +110,18 @@ sudo apt-get install -y code && \
 sudo apt-get install -y nodejs && \
 sudo apt-get install -y yarn && \
 sudo apt-get install -y python-pip && \
-sudo apt-get install -y docker-ce
+sudo apt-get install -y docker-ce && \
+sudo apt-get install -y adb
 
-#Install Snaps
+#Snaps#
 sudo snap install canonical-livepatch
 sudo snap install insomnia
 
-#VirtualBox Guest Additions (VM only)
+##Platform Specific Installs##
+#VM
 if [ $opt = $VM ]; then 
+	#VirtualBox Guest Additions
+	
 	#Download and install latest guest additions
 	wget https://download.virtualbox.org/virtualbox/LATEST.TXT
 	latest=`cat LATEST.TXT`
@@ -124,7 +136,7 @@ if [ $opt = $VM ]; then
 	rm "VBoxGuestAdditions_$latest.iso"
 fi
 
-#Physical build packages
+#Physical
 if [ $opt = $Phys ]; then 
 	#Add repos
 	#Force to bionic for now - update when available
@@ -141,18 +153,15 @@ if [ $opt = $Phys ]; then
 	sudo apt-get install -y openvpn
 	sudo apt-get install -y network-manager-openvpn
 	sudo apt-get install -y network-manager-openvpn-gnome
-	sudo apt-get install -y adb
 	
 	sudo restart network-manager
 	
 	#Install EasyTether
-	wget http://www.mobile-stream.com/beta/ubuntu/16.04/easytether_0.8.8_amd64.deb
-	sudo dpkg -i easytether_0.8.8_amd64.deb
-	echo "source-directory interfaces.d" | sudo tee -a /etc/network/interfaces
-	
-	#ADB config
-	sudo touch /etc/udev/rules.d/51-android.rules
-	echo 'SUBSYSTEM==\"usb\", ATTR{idVendor}==\"22b8\", MODE=\"0666\", GROUP=\"plugdev\"' | sudo tee -a /etc/udev/rules.d/51-android.rules	
+	wget http://www.mobile-stream.com/beta/ubuntu/18.04/easytether_0.8.9_amd64.deb
+	sudo dpkg -i easytether_0.8.9_amd64.deb
+	systemctl enable systemd-networkd
+	systemctl start systemd-networkd
+	#echo "source-directory interfaces.d" | sudo tee -a /etc/network/interfaces
 fi
 
 #Install non-repo packages
@@ -191,26 +200,22 @@ fi
 #~/.dropbox-dist/dropboxd &
 #dropbox autostart y
 
-#Clean up
-sudo apt-get autoremove -y
-
 read -p "Press any key to continue... " -n1 -s
 
-#Package config
+###Package config###
 
-#Watches
-echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
+#ADB#
+sudo touch /etc/udev/rules.d/51-android.rules
+echo 'SUBSYSTEM==\"usb\", ATTR{idVendor}==\"2e17\", MODE=\"0666\", GROUP=\"plugdev\"' | sudo tee -a /etc/udev/rules.d/51-android.rules	
 
-#Backgrounds
-sudo cp /home/john/Dropbox/bgs/Std2fCM.jpg /usr/share/backgrounds/
+#Backgrounds#
+sudo cp /home/$username/Dropbox/bgs/Std2fCM.jpg /usr/share/backgrounds/
 
-#Docker
+#Docker#
+#Enables running Docker command without sudo
 sudo gpasswd -a $username docker
 
-#NPM - Update to latest
-sudo npm install npm@latest -g
-
-#Atom
+#Atom#
 #apm install atom-ide-ui
 #apm install ide-typescript
 #apm install node-debugger
@@ -220,25 +225,26 @@ sudo npm install npm@latest -g
 #apm install docblockr
 #apm install split-diff
 
-#VS Code Extensions
+#VS Code#
+#Extensions
 code --install-extension aws-amplify.aws-amplify-vscode
 
-#Git
-git config --global user.email $email
-git config --global user.name $name
-git config --global push.default simple
-
-#Set up SSH keys
+#SSH Keys##
 mkdir ~/.ssh
 cp ~/Dropbox/keys/* ~/.ssh
 chown -R $username ~/.ssh
 chmod -R 700 ~/.ssh
 
-#Set up project directory
+#Project Directory#
 mkdir Development
 cd Development
 
-#Git clone repositories
+#Git#
+#Basic config
+git config --global user.email $email
+git config --global user.name $name
+git config --global push.default simple
+#Set up repos
 for repo in "${gitRepos[@]}"
 do
 	git clone $repo
@@ -247,15 +253,21 @@ done
 #Set environment vars
 echo '' >> ~/.profile
 
-#AWS Setup and Upgrade
+#AWS#
+#AWS Cli setup and Upgrade
 python -m pip install --upgrade pip 
 python -m pip install setuptools --upgrade --user
 python -m pip install awscli --upgrade --user
-
 #SAM Setup
 python -m pip install aws-sam-cli --upgrade --user
 
-#NPM Globals
+#NPM#
+#Increases max watches which is needed for dealing with large # of files in a directory
+#Can be common for large NPM dependencies trees
+echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
+#Upgrade to latest
+sudo npm install npm@latest -g
+#Install NPM Globals
 yarn global add eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard eslint-plugin-react babel-eslint eslint-plugin-babel
 yarn global add lerna
 yarn global add jest
