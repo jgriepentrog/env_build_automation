@@ -4,7 +4,10 @@
 ###Setup###
 
 ##Env Vars##
-#NEED TO SET FOLLOWING VARS PRIOR TO RUNNING SCRIPT: username, gitRepos
+#NEED TO SET FOLLOWING VARS PRIOR TO RUNNING SCRIPT: gitRepos
+
+#Basic Info#
+username=`whoami`
 
 #Git Info#
 email="1390583+jgriepentrog@users.noreply.github.com"
