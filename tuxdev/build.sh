@@ -120,6 +120,15 @@ sudo apt-get install -y adb
 sudo snap install canonical-livepatch
 sudo snap install insomnia
 
+#pip installs and upgrades
+python -m pip install --upgrade pip 
+python -m pip install setuptools --upgrade --user
+#AWS CLI Install
+python -m pip install awscli --upgrade --user
+#SAM CLI Install
+python -m pip install aws-sam-cli --upgrade --user
+
+
 ##Platform Specific Installs##
 #VM
 if [ $opt = $VM ]; then 
@@ -257,12 +266,8 @@ done
 echo '' >> ~/.profile
 
 #AWS#
-#AWS Cli setup and Upgrade
-python -m pip install --upgrade pip 
-python -m pip install setuptools --upgrade --user
-python -m pip install awscli --upgrade --user
-#SAM Setup
-python -m pip install aws-sam-cli --upgrade --user
+#CLI Setup
+aws configure set default.region us-east-1
 
 #NPM#
 #Increases max watches which is needed for dealing with large # of files in a directory
