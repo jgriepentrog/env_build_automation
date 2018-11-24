@@ -254,7 +254,7 @@ cd Development
 #Git#
 #Basic config
 git config --global user.email $email
-git config --global user.name $name
+git config --global user.name "$name"
 git config --global push.default simple
 #Set up repos
 for repo in "${gitRepos[@]}"
