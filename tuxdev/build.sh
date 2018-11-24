@@ -106,7 +106,7 @@ sudo apt-get install -y build-essential && \
 sudo apt-get install -y google-chrome-stable && \
 sudo apt-get install -y keepass2 && \
 sudo apt-get install -y dropbox && \ 
-sudo apt-get install -y python-gpgme && \
+sudo apt-get install -y python-gpg && \
 sudo apt-get install -y keychain && \
 sudo apt-get install -y git && \
 sudo apt-get install -y code && \
