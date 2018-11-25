@@ -52,7 +52,7 @@ sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
 sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 
 #KeePass - PPA#
-sudo add-apt-repository ppa:jtaylor/keepass
+sudo add-apt-repository -y ppa:jtaylor/keepass
 
 #Chrome - Official#
 wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
@@ -114,7 +114,8 @@ sudo apt-get install -y nodejs && \
 sudo apt-get install -y yarn && \
 sudo apt-get install -y python-pip && \
 sudo apt-get install -y docker-ce && \
-sudo apt-get install -y adb
+sudo apt-get install -y adb && \
+sudo apt-get install -y arc-theme
 
 #Snaps#
 sudo snap install canonical-livepatch
@@ -238,6 +239,8 @@ sudo gpasswd -a $username docker
 #apm install split-diff
 
 #VS Code#
+#Settings
+cp settings/vscode/* $HOME/.config/Code/User/
 #Extensions
 code --install-extension aws-amplify.aws-amplify-vscode
 code --install-extension luqimin.velocity
