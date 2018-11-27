@@ -222,7 +222,8 @@ sudo touch /etc/udev/rules.d/51-android.rules
 echo 'SUBSYSTEM==\"usb\", ATTR{idVendor}==\"2e17\", MODE=\"0666\", GROUP=\"plugdev\"' | sudo tee -a /etc/udev/rules.d/51-android.rules	
 
 #Backgrounds#
-sudo cp /home/$username/Dropbox/bgs/Std2fCM.jpg /usr/share/backgrounds/
+sudo cp ~/Dropbox/bgs/Std2fCM.jpg ~/Pictures
+sudo cp ~/Dropbox/bgs/fire-tiger_1920x1080.jpg ~/Pictures
 
 #Docker#
 #Enables running Docker command without sudo
@@ -240,7 +241,8 @@ sudo gpasswd -a $username docker
 
 #VS Code#
 #Settings
-cp settings/vscode/* $HOME/.config/Code/User/
+mkdir -p ~/.config/Code/User/
+cp settings/vscode/* ~/.config/Code/User/
 #Extensions
 code --install-extension aws-amplify.aws-amplify-vscode
 code --install-extension luqimin.velocity
@@ -255,25 +257,10 @@ code --install-extension vsmobile.vscode-react-native
 code --install-extension eamodio.gitlens
 
 #SSH Keys##
-mkdir ~/.ssh
+mkdir -p ~/.ssh
 cp ~/Dropbox/keys/* ~/.ssh
 chown -R $username ~/.ssh
 chmod -R 700 ~/.ssh
-
-#Project Directory#
-mkdir Development
-cd Development
-
-#Git#
-#Basic config
-git config --global user.email $email
-git config --global user.name "$name"
-git config --global push.default simple
-#Set up repos
-for repo in "${gitRepos[@]}"
-do
-	git clone $repo
-done
 
 #Set environment vars
 echo '' >> ~/.profile
@@ -292,3 +279,21 @@ sudo npm install npm@latest -g
 yarn global add eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard eslint-plugin-react babel-eslint eslint-plugin-babel
 yarn global add lerna
 yarn global add jest
+
+#Finalize desktop
+dconf load / < settings/dconf/dconf-select-settings.config
+
+#Project Directory#
+mkdir ~/Development
+cd ~/Development
+
+#Git#
+#Basic config
+git config --global user.email $email
+git config --global user.name "$name"
+git config --global push.default simple
+#Set up repos
+for repo in "${gitRepos[@]}"
+do
+	git clone $repo
+done
