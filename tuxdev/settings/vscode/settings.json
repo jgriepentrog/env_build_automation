@@ -1,0 +1,9 @@
+{
+    "telemetry.enableTelemetry": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.iconTheme": "vscode-icons",
+    "editor.tabSize": 2,
+    "eslint.nodePath": "/usr/local/share/.config/yarn/global/node_modules/eslint/node_modules",
+    "window.titleBarStyle": "custom"
+}
