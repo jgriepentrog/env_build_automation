@@ -121,7 +121,6 @@ sudo snap install canonical-livepatch
 sudo snap install insomnia
 
 #pip installs and upgrades
-#Suppress warnings on script location as 
 python -m pip install --upgrade pip 
 python -m pip install setuptools --upgrade --user
 #AWS CLI Install
