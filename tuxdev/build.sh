@@ -1,5 +1,6 @@
 #!/bin/bash
 # Assumes Ubuntu Budgie 18.10 Minimal Install
+# Do not run whole script in sudo
 
 ###Setup###
 
@@ -226,7 +227,7 @@ sudo cp ~/Dropbox/bgs/Std2fCM.jpg /usr/share/backgrounds
 cp ~/Dropbox/bgs/fire-tiger_1920x1080.jpg ~/Pictures
 
 #Login Screen#
-cp settings/lightdm/slick-greeter.conf
+cp settings/lightdm/slick-greeter.conf /etc/lightdm
 
 #Docker#
 #Enables running Docker command without sudo
