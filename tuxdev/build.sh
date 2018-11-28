@@ -215,15 +215,19 @@ fi
 
 read -p "Press any key to continue... " -n1 -s
 
-###Package config###
+###Package Config###
 
 #ADB#
 sudo touch /etc/udev/rules.d/51-android.rules
 echo 'SUBSYSTEM==\"usb\", ATTR{idVendor}==\"2e17\", MODE=\"0666\", GROUP=\"plugdev\"' | sudo tee -a /etc/udev/rules.d/51-android.rules	
 
 #Backgrounds#
-sudo cp ~/Dropbox/bgs/Std2fCM.jpg ~/Pictures
-sudo cp ~/Dropbox/bgs/fire-tiger_1920x1080.jpg ~/Pictures
+cp ~/Dropbox/bgs/Std2fCM.jpg ~/Pictures
+sudo cp ~/Dropbox/bgs/Std2fCM.jpg /usr/share/backgrounds
+cp ~/Dropbox/bgs/fire-tiger_1920x1080.jpg ~/Pictures
+
+#Login Screen#
+cp settings/lightdm/slick-greeter.conf
 
 #Docker#
 #Enables running Docker command without sudo
@@ -280,7 +284,7 @@ yarn global add eslint eslint-config-standard eslint-plugin-import eslint-plugin
 yarn global add lerna
 yarn global add jest
 
-#Finalize desktop
+#Finalize Desktop
 dconf load / < settings/dconf/dconf-select-settings.config
 
 #Project Directory#
@@ -288,7 +292,7 @@ mkdir ~/Development
 cd ~/Development
 
 #Git#
-#Basic config
+#Basic Config
 git config --global user.email $email
 git config --global user.name "$name"
 git config --global push.default simple
