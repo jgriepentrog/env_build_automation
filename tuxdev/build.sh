@@ -62,7 +62,8 @@ echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" | su
 #Dropbox - Official#
 #Set manually to zesty - update if available
 sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E 
-echo "deb [arch=amd64] https://linux.dropbox.com/ubuntu/ zesty main" | sudo tee /etc/apt/sources.list.d/dropbox.list
+echo "deb [arch=amd64] https://linux.dropbox.com/ubuntu/ $codename main" | sudo tee /etc/apt/sources.list.d/dropbox.list
+#echo "deb [arch=amd64] https://linux.dropbox.com/ubuntu/ zesty main" | sudo tee /etc/apt/sources.list.d/dropbox.list
 
 #Node#
 nodeVersion=8 #Match current AWS Lambda
