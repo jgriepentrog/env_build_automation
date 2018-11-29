@@ -60,7 +60,6 @@ wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key ad
 echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
 
 #Dropbox - Official#
-#Set manually to zesty - update if available
 sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E 
 echo "deb [arch=amd64] https://linux.dropbox.com/ubuntu/ $codename main" | sudo tee /etc/apt/sources.list.d/dropbox.list
 #echo "deb [arch=amd64] https://linux.dropbox.com/ubuntu/ zesty main" | sudo tee /etc/apt/sources.list.d/dropbox.list
@@ -79,7 +78,7 @@ echo "deb [arch=amd64] https://dl.yarnpkg.com/debian/ stable main" | sudo tee /e
 
 #Docker#
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-#Set manually to bionic - update as available
+#Set manually to bionic - update as available, planned in Dec 2018
 #echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $codename stable" | sudo tee /etc/apt/sources.list.d/docker.list
 echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" | sudo tee /etc/apt/sources.list.d/docker.list
    
@@ -97,26 +96,18 @@ sudo apt-get autoremove -y
 sudo apt-get upgrade -y
 
 ##Package Installs##
+aptPkgs="net-tools build-essential python-gpg python-pip "
+aptPkgs="lightdm-settings arc-theme "
+aptPkgs+="gedit gthumb "
+aptPkgs+="google-chrome-stable keepass2 dropbox "
+aptPkgs+="keychain git "
+aptPkgs+="nodejs yarn "
+aptPkgs+="docker-ce "
+aptPkgs+="code "
+aptPkgs+="adb "
 
 #Apt#
-sudo apt-get install -y lightdm-settings && \
-sudo apt-get install -y gedit && \
-sudo apt-get install -y gthumb && \
-sudo apt-get install -y net-tools && \
-sudo apt-get install -y build-essential && \
-sudo apt-get install -y google-chrome-stable && \
-sudo apt-get install -y keepass2 && \
-sudo apt-get install -y dropbox && \ 
-sudo apt-get install -y python-gpg && \
-sudo apt-get install -y keychain && \
-sudo apt-get install -y git && \
-sudo apt-get install -y code && \
-sudo apt-get install -y nodejs && \
-sudo apt-get install -y yarn && \
-sudo apt-get install -y python-pip && \
-sudo apt-get install -y docker-ce && \
-sudo apt-get install -y adb && \
-sudo apt-get install -y arc-theme
+sudo apt-get install -y $aptPkgs
 
 #Snaps#
 sudo snap install canonical-livepatch
