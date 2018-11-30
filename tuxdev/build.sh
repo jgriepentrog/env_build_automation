@@ -97,7 +97,7 @@ sudo apt-get upgrade -y
 
 ##Package Installs##
 aptPkgs="net-tools build-essential python-gpg python-pip "
-aptPkgs="lightdm-settings arc-theme "
+aptPkgs+="lightdm-settings arc-theme "
 aptPkgs+="gedit gthumb "
 aptPkgs+="google-chrome-stable keepass2 dropbox "
 aptPkgs+="keychain git "
