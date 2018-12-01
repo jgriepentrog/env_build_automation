@@ -88,6 +88,7 @@ sudo apt-get update
 ##Packages Removals##
 #Remove unneeded / unused items
 sudo apt-get remove firefox -y
+sudo apt-get remove plank -y
 
 #Clean up from removal
 sudo apt-get autoremove -y
