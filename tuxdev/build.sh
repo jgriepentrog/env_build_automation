@@ -268,6 +268,7 @@ echo 'fi' >> ~/.profile
 #AWS#
 #CLI Setup
 aws configure set default.region us-east-1
+aws configure set default.output json
 
 #NPM#
 #Increases max watches which is needed for dealing with large # of files in a directory
