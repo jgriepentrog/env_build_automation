@@ -252,6 +252,7 @@ code --install-extension robertohuertasm.vscode-icons
 code --install-extension donjayamanne.githistory
 code --install-extension vsmobile.vscode-react-native
 code --install-extension eamodio.gitlens
+code --install-extension slevesque.vscode-hexdump
 
 #SSH Keys##
 mkdir -p ~/.ssh
