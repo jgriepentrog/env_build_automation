@@ -144,18 +144,11 @@ fi
 
 #Physical
 if [ $opt = $Phys ]; then 
-	#Add repos
-	#Force to bionic for now - update when available
-	#sudo add-apt-repository ppa:nathan-renniewaldock/flux
-	echo "deb http://ppa.launchpad.net/nathan-renniewaldock/flux/ubuntu bionic main" | sudo tee /etc/apt/sources.list.d/nathan-renniewaldock-ubuntu-flux.list
-	echo "# deb-src http://ppa.launchpad.net/nathan-renniewaldock/flux/ubuntu bionic main" | sudo tee -a /etc/apt/sources.list.d/nathan-renniewaldock-ubuntu-flux.list
-
 	#Update package list to latest
 	sudo apt-get update
 
 	#Install packages
 	sudo snap install remmina
-	sudo apt-get install -y fluxgui
 	sudo apt-get install -y openvpn
 	sudo apt-get install -y network-manager-openvpn
 	sudo apt-get install -y network-manager-openvpn-gnome
