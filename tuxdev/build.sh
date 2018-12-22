@@ -158,8 +158,8 @@ if [ $opt = $Phys ]; then
 	#Install EasyTether
 	wget http://www.mobile-stream.com/beta/ubuntu/18.04/easytether_0.8.9_amd64.deb
 	sudo dpkg -i easytether_0.8.9_amd64.deb
-	systemctl enable systemd-networkd
-	systemctl start systemd-networkd
+	sudo systemctl enable systemd-networkd
+	sudo systemctl start systemd-networkd
 	#echo "source-directory interfaces.d" | sudo tee -a /etc/network/interfaces
 fi
 
