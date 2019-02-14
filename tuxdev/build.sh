@@ -114,8 +114,9 @@ sudo apt-get install -y $aptPkgs
 sudo snap install canonical-livepatch
 sudo snap install insomnia
 
+#NOTE: Switch to Python 3 in future version due to 1/2020 EOL for 2.7
 #pip installs and upgrades
-python -m pip install --upgrade pip 
+python -m pip install --upgrade pip --user
 python -m pip install setuptools --upgrade --user
 #AWS CLI Install
 python -m pip install awscli --upgrade --user
