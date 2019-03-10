@@ -79,8 +79,8 @@ echo "deb [arch=amd64] https://dl.yarnpkg.com/debian/ stable main" | sudo tee /e
 #Docker#
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 #Set manually to bionic - update as available, planned in Dec 2018
-#echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $codename stable" | sudo tee /etc/apt/sources.list.d/docker.list
-echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" | sudo tee /etc/apt/sources.list.d/docker.list
+echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $codename stable" | sudo tee /etc/apt/sources.list.d/docker.list
+#echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" | sudo tee /etc/apt/sources.list.d/docker.list
    
 #Update package list to latest
 sudo apt-get update
@@ -97,7 +97,7 @@ sudo apt-get autoremove -y
 sudo apt-get upgrade -y
 
 ##Package Installs##
-aptPkgs="net-tools build-essential python-gpg python-pip "
+aptPkgs="net-tools build-essential python3-gpg python3-pip "
 aptPkgs+="lightdm-settings arc-theme "
 aptPkgs+="gedit gthumb "
 aptPkgs+="google-chrome-stable keepass2 dropbox "
@@ -114,14 +114,13 @@ sudo apt-get install -y $aptPkgs
 sudo snap install canonical-livepatch
 sudo snap install insomnia
 
-#NOTE: Switch to Python 3 in future version due to 1/2020 EOL for 2.7
 #pip installs and upgrades
-python -m pip install --upgrade pip --user
-python -m pip install setuptools --upgrade --user
+python3 -m pip3 install --upgrade pip --user
+python3 -m pip3 install setuptools --upgrade --user
 #AWS CLI Install
-python -m pip install awscli --upgrade --user
+python3 -m pip3 install awscli --upgrade --user
 #SAM CLI Install
-python -m pip install aws-sam-cli --upgrade --user
+python3 -m pip3 install aws-sam-cli --upgrade --user
 
 
 ##Platform Specific Installs##
