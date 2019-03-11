@@ -115,6 +115,7 @@ sudo apt-get install -y $aptPkgs
 #Snaps#
 sudo snap install canonical-livepatch
 sudo snap install insomnia
+sudo snap install yq
 
 #pip installs and upgrades
 python3 -m pip3 install --upgrade pip --user
