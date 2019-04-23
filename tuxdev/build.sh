@@ -1,5 +1,5 @@
 #!/bin/bash
-# Assumes Ubuntu Budgie 18.10 Minimal Install
+# Assumes Ubuntu Budgie 19.04 Minimal Install
 # Do not run whole script in sudo
 
 ###Setup###
@@ -54,8 +54,10 @@ sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode s
 
 #KeePass - PPA#
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 57A0E8DEA026F8d8173E90A57858088158B80F90
-echo "deb [arch=amd64] http://ppa.launchpad.net/jtaylor/keepass/ubuntu $codename main" | sudo tee /etc/apt/sources.list.d/keepass.list
-echo "deb-src [arch=amd64] http://ppa.launchpad.net/jtaylor/keepass/ubuntu $codename main" | sudo tee -a /etc/apt/sources.list.d/keepass.list
+#echo "deb [arch=amd64] http://ppa.launchpad.net/jtaylor/keepass/ubuntu $codename main" | sudo tee /etc/apt/sources.list.d/keepass.list
+#echo "deb-src [arch=amd64] http://ppa.launchpad.net/jtaylor/keepass/ubuntu $codename main" | sudo tee -a /etc/apt/sources.list.d/keepass.list
+echo "deb [arch=amd64] http://ppa.launchpad.net/jtaylor/keepass/ubuntu cosmic main" | sudo tee /etc/apt/sources.list.d/keepass.list
+echo "deb-src [arch=amd64] http://ppa.launchpad.net/jtaylor/keepass/ubuntu cosmic main" | sudo tee -a /etc/apt/sources.list.d/keepass.list
 
 #Chrome - Official#
 wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
@@ -63,8 +65,8 @@ echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" | su
 
 #Dropbox - Official#
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E 
-echo "deb [arch=amd64] https://linux.dropbox.com/ubuntu/ $codename main" | sudo tee /etc/apt/sources.list.d/dropbox.list
-#echo "deb [arch=amd64] https://linux.dropbox.com/ubuntu/ zesty main" | sudo tee /etc/apt/sources.list.d/dropbox.list
+#echo "deb [arch=amd64] https://linux.dropbox.com/ubuntu/ $codename main" | sudo tee /etc/apt/sources.list.d/dropbox.list
+echo "deb [arch=amd64] https://linux.dropbox.com/ubuntu/ cosmic main" | sudo tee /etc/apt/sources.list.d/dropbox.list
 
 #Node#
 nodeVersion=8 #Match current AWS Lambda
