@@ -83,16 +83,17 @@ echo "deb [arch=amd64] https://dl.yarnpkg.com/debian/ stable main" | sudo tee /e
 #Docker#
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 #Set manually to bionic - update as available, planned in Dec 2018
-echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $codename stable" | sudo tee /etc/apt/sources.list.d/docker.list
-#echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" | sudo tee /etc/apt/sources.list.d/docker.list
+#echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $codename stable" | sudo tee /etc/apt/sources.list.d/docker.list
+echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu cosmic stable" | sudo tee /etc/apt/sources.list.d/docker.list
    
 #Update package list to latest
 sudo apt-get update
 
 ##Packages Removals##
-#Remove unneeded / unused items
+#Remove unneeded / unused / outdated items
 sudo apt-get remove firefox -y
 sudo apt-get remove plank -y
+sudo apt-get remove docker docker-engine docker.io containerd runc
 
 #Clean up from removal
 sudo apt-get autoremove -y
@@ -107,7 +108,7 @@ aptPkgs+="gedit gthumb "
 aptPkgs+="google-chrome-stable keepass2 dropbox "
 aptPkgs+="keychain git "
 aptPkgs+="nodejs yarn "
-aptPkgs+="docker-ce "
+aptPkgs+="docker-ce docker-ce-cli containerd.io "
 aptPkgs+="code "
 aptPkgs+="adb "
 
