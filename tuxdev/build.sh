@@ -252,7 +252,7 @@ code --install-extension dbaeumer.vscode-eslint
 code --install-extension kumar-harsh.graphql-for-vscode
 code --install-extension christian-kohler.npm-intellisense
 code --install-extension zhuangtongfa.material-theme
-code --install-extension robertohuertasm.vscode-icons
+code --install-extension vscode-icons-team.vscode-icons
 code --install-extension donjayamanne.githistory
 code --install-extension vsmobile.vscode-react-native
 code --install-extension eamodio.gitlens
