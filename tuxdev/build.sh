@@ -118,15 +118,15 @@ sudo apt-get install -y $aptPkgs
 #Snaps#
 sudo snap install canonical-livepatch
 sudo snap install insomnia
-sudo snap install yq
+#sudo snap install yq
 
 #pip installs and upgrades
-python3 -m pip3 install --upgrade pip --user
-python3 -m pip3 install setuptools --upgrade --user
+python3 -m pip install --upgrade pip --user
+python3 -m pip install setuptools --upgrade --user
 #AWS CLI Install
-python3 -m pip3 install awscli --upgrade --user
+python3 -m pip install awscli --upgrade --user
 #SAM CLI Install
-python3 -m pip3 install aws-sam-cli --upgrade --user
+python3 -m pip install aws-sam-cli --upgrade --user
 
 
 ##Platform Specific Installs##
