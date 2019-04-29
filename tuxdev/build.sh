@@ -271,6 +271,8 @@ echo '# set PATH so it includes Yarn'"'"'s bin if it exists' >> ~/.profile
 echo 'if yarn global bin &>/dev/null; then' >> ~/.profile
 echo '    PATH="`yarn global bin`:$PATH"' >> ~/.profile
 echo 'fi' >> ~/.profile
+. ~/.profile
+
 #AWS#
 #CLI Setup
 aws configure set default.region us-east-1
