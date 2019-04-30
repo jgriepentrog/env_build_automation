@@ -119,6 +119,7 @@ sudo apt-get install -y $aptPkgs
 sudo snap install canonical-livepatch
 sudo snap install insomnia
 sudo snap install node --classic --channel=8
+#sudo snap install code --classic
 #sudo snap install yq
 
 #pip installs and upgrades
