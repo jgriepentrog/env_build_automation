@@ -271,7 +271,7 @@ echo '# set PATH so it includes Yarn'"'"'s bin if it exists' >> ~/.profile
 echo 'if yarn global bin &>/dev/null; then' >> ~/.profile
 echo '    PATH="`yarn global bin`:$PATH"' >> ~/.profile
 echo 'fi' >> ~/.profile
-. ~/.profile
+source ~/.profile
 
 #AWS#
 #CLI Setup
@@ -306,3 +306,17 @@ for repo in "${gitRepos[@]}"
 do
 	git clone $repo
 done
+
+#Tests
+echo Node: `node -v`
+echo NPM: `npm -v`
+echo yarn: `yarn -v`
+echo AWS: `aws --version`
+echo SAM: `sam --version`
+echo ESLint: `eslint -v`
+echo Lerna: `lerna -v`
+echo Jest: `jest -v`
+echo VSCode: `code -v`
+echo Docker: `docker -v`
+echo git: `git --version`
+echo adb: `adb --version`
