@@ -285,9 +285,9 @@ echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
 #Upgrade to latest
 sudo npm install npm@latest -g
 #Install NPM Globals
-yarn global add eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard eslint-plugin-react babel-eslint eslint-plugin-babel
-yarn global add lerna
-yarn global add jest
+sudo yarn global add eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard eslint-plugin-react babel-eslint eslint-plugin-babel
+sudo yarn global add lerna
+sudo yarn global add jest
 
 #Finalize Desktop
 dconf load / < settings/dconf/dconf-select-settings.config
