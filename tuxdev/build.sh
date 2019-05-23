@@ -53,11 +53,11 @@ sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
 sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 
 #KeePass - PPA#
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 57A0E8DEA026F8d8173E90A57858088158B80F90
+#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 57A0E8DEA026F8d8173E90A57858088158B80F90
 #echo "deb [arch=amd64] http://ppa.launchpad.net/jtaylor/keepass/ubuntu $codename main" | sudo tee /etc/apt/sources.list.d/keepass.list
 #echo "deb-src [arch=amd64] http://ppa.launchpad.net/jtaylor/keepass/ubuntu $codename main" | sudo tee -a /etc/apt/sources.list.d/keepass.list
-echo "deb [arch=amd64] http://ppa.launchpad.net/jtaylor/keepass/ubuntu cosmic main" | sudo tee /etc/apt/sources.list.d/keepass.list
-echo "deb-src [arch=amd64] http://ppa.launchpad.net/jtaylor/keepass/ubuntu cosmic main" | sudo tee -a /etc/apt/sources.list.d/keepass.list
+#echo "deb [arch=amd64] http://ppa.launchpad.net/jtaylor/keepass/ubuntu cosmic main" | sudo tee /etc/apt/sources.list.d/keepass.list
+#echo "deb-src [arch=amd64] http://ppa.launchpad.net/jtaylor/keepass/ubuntu cosmic main" | sudo tee -a /etc/apt/sources.list.d/keepass.list
 
 #Chrome - Official#
 wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
@@ -117,7 +117,7 @@ sudo apt-get install -y $aptPkgs
 #Snaps#
 sudo snap install canonical-livepatch
 sudo snap install insomnia
-sudo snap install node --classic --channel=8
+sudo snap install node --classic --channel=10
 #sudo snap install code --classic
 #sudo snap install yq
 
