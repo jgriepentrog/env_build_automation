@@ -165,7 +165,7 @@ if [ $opt = $Phys ]; then
 	sudo apt-get install -y network-manager-openvpn
 	sudo apt-get install -y network-manager-openvpn-gnome
 	
-	sudo restart network-manager
+	sudo service network-manager restart
 	
 	#Install EasyTether
 	wget http://www.mobile-stream.com/beta/ubuntu/18.04/easytether_0.8.9_amd64.deb
