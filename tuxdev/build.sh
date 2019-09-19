@@ -69,7 +69,7 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1C61A2656FB57B7E4D
 echo "deb [arch=amd64] https://linux.dropbox.com/ubuntu/ cosmic main" | sudo tee /etc/apt/sources.list.d/dropbox.list
 
 #Node#
-#nodeVersion=8 #Match current AWS Lambda
+nodeVersion=10 #Match current AWS Lambda
 #curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
 #echo "deb [arch=amd64] https://deb.nodesource.com/node_$nodeVersion.x $codename main" | sudo tee /etc/apt/sources.list.d/nodesource.list
 #echo "deb-src [arch=amd64] https://deb.nodesource.com/node_$nodeVersion.x $codename main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
@@ -77,14 +77,13 @@ echo "deb [arch=amd64] https://linux.dropbox.com/ubuntu/ cosmic main" | sudo tee
 #echo "deb-src [arch=amd64] https://deb.nodesource.com/node_$nodeVersion.x bionic main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list && \
 
 #Yarn#
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb [arch=amd64] https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+#curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+#echo "deb [arch=amd64] https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
 #Docker#
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-#Set manually to bionic - update as available, planned in Dec 2018
-#echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $codename stable" | sudo tee /etc/apt/sources.list.d/docker.list
-echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu cosmic stable" | sudo tee /etc/apt/sources.list.d/docker.list
+echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $codename stable" | sudo tee /etc/apt/sources.list.d/docker.list
+#echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu disco stable" | sudo tee /etc/apt/sources.list.d/docker.list
    
 #Update package list to latest
 sudo apt-get update
@@ -117,7 +116,7 @@ sudo apt-get install -y $aptPkgs
 #Snaps#
 sudo snap install canonical-livepatch
 sudo snap install insomnia
-sudo snap install node --classic --channel=10
+sudo snap install node --classic --channel=$nodeVersion
 #sudo snap install code --classic
 #sudo snap install yq
 
