@@ -1,5 +1,5 @@
 #!/bin/bash
-# Assumes Ubuntu Budgie 19.04 Minimal Install
+# Assumes Ubuntu Budgie 19.10 Minimal Install
 # Do not run whole script in sudo
 
 ###Setup###
@@ -82,8 +82,8 @@ nodeVersion=10 #Match current AWS Lambda
 
 #Docker#
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $codename stable" | sudo tee /etc/apt/sources.list.d/docker.list
-#echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu disco stable" | sudo tee /etc/apt/sources.list.d/docker.list
+#echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $codename stable" | sudo tee /etc/apt/sources.list.d/docker.list
+echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu disco stable" | sudo tee /etc/apt/sources.list.d/docker.list
    
 #Update package list to latest
 sudo apt-get update
@@ -284,9 +284,9 @@ echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
 #Upgrade to latest
 sudo npm install npm@latest -g
 #Install NPM Globals
-sudo yarn global add eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard eslint-plugin-react babel-eslint eslint-plugin-babel
-sudo yarn global add lerna
-sudo yarn global add jest
+#sudo yarn global add eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard eslint-plugin-react babel-eslint eslint-plugin-babel
+#sudo yarn global add lerna
+#sudo yarn global add jest
 
 #Finalize Desktop
 dconf load / < settings/dconf/dconf-select-settings.config
@@ -312,9 +312,9 @@ echo NPM: `npm -v`
 echo yarn: `yarn -v`
 echo AWS: `aws --version`
 echo SAM: `sam --version`
-echo ESLint: `eslint -v`
-echo Lerna: `lerna -v`
-echo Jest: `jest -v`
+#echo ESLint: `eslint -v`
+#echo Lerna: `lerna -v`
+#echo Jest: `jest -v`
 echo VSCode: `code -v`
 echo Docker: `docker -v`
 echo git: `git --version`
