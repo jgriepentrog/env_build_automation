@@ -69,7 +69,7 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1C61A2656FB57B7E4D
 echo "deb [arch=amd64] https://linux.dropbox.com/ubuntu/ cosmic main" | sudo tee /etc/apt/sources.list.d/dropbox.list
 
 #Node#
-nodeVersion=10 #Match current AWS Lambda
+nodeVersion=12 #Match current AWS Lambda
 #curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
 #echo "deb [arch=amd64] https://deb.nodesource.com/node_$nodeVersion.x $codename main" | sudo tee /etc/apt/sources.list.d/nodesource.list
 #echo "deb-src [arch=amd64] https://deb.nodesource.com/node_$nodeVersion.x $codename main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
@@ -245,18 +245,19 @@ sudo gpasswd -a $username docker
 mkdir -p ~/.config/Code/User/
 cp settings/vscode/* ~/.config/Code/User/
 #Extensions
-code --install-extension aws-amplify.aws-amplify-vscode
-code --install-extension luqimin.velocity
-code --install-extension peterjausovec.vscode-docker
-code --install-extension dbaeumer.vscode-eslint
-code --install-extension kumar-harsh.graphql-for-vscode
-code --install-extension christian-kohler.npm-intellisense
-code --install-extension zhuangtongfa.material-theme
-code --install-extension vscode-icons-team.vscode-icons
-code --install-extension donjayamanne.githistory
-code --install-extension vsmobile.vscode-react-native
-code --install-extension eamodio.gitlens
-code --install-extension slevesque.vscode-hexdump
+code --install-extension luqimin.velocity #Apache Velocity
+code --install-extension aws-amplify.aws-amplify-vscode #AWS Amplify API
+code --install-extension ms-azuretools.vscode-docker #Docker
+code --install-extension dbaeumer.vscode-eslint #ESLint
+code --install-extension donjayamanne.githistory #Git History
+code --install-extension eamodio.gitlens #GitLens
+code --install-extension kumar-harsh.graphql-for-vscode #GraphQL for VSCode
+code --install-extension slevesque.vscode-hexdump #hexdump for VSCode
+code --install-extension christian-kohler.npm-intellisense #npm Intellisense
+code --install-extension zhuangtongfa.material-theme #One Dark Pro
+code --install-extension msjsdiag.vscode-react-native # React Native Tools
+code --install-extension chenxsan.vscode-standardjs # StandardJS - Javascript Standard Style
+code --install-extension vscode-icons-team.vscode-icons #vscode-icons
 
 #SSH Keys##
 mkdir -p ~/.ssh
