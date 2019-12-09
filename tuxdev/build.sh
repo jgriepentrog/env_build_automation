@@ -146,6 +146,9 @@ if [ $opt = $VM ]; then
 	sudo /media/iso/VBoxLinuxAdditions.run
 	sudo umount -f /media/iso
 	rm "VBoxGuestAdditions_$latest.iso"
+	
+	#Access to Virtualbox shared folders
+	sudo usermod -G vboxsf -a $username
 fi
 
 #Physical
