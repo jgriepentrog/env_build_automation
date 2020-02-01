@@ -138,14 +138,13 @@ if [ $opt = $VM ]; then
 	wget https://download.virtualbox.org/virtualbox/LATEST.TXT
 	latest=`cat LATEST.TXT`
 	rm -f LATEST.TXT
-	#Can no longer use with newest kernel 4.10+
-	#latest="5.0.16" #Override latest to working 3D acceleration
-	wget "https://download.virtualbox.org/virtualbox/$latest/VBoxGuestAdditions_$latest.iso"
+	virtualBoxFileName="VBoxGuestAdditions_${latest}.iso"
+	wget "https://download.virtualbox.org/virtualbox/$latest/$virtualBoxFileName"
 	sudo mkdir /media/iso
-	sudo mount -o loop "VBoxGuestAdditions_$latest.iso" /media/iso
+	sudo mount -o loop $virtualBoxFileName /media/iso
 	sudo /media/iso/VBoxLinuxAdditions.run
 	sudo umount -f /media/iso
-	rm "VBoxGuestAdditions_$latest.iso"
+	rm -f $virtualBoxFileName
 	
 	#Access to Virtualbox shared folders
 	sudo usermod -G vboxsf -a $username
@@ -170,14 +169,24 @@ if [ $opt = $Phys ]; then
 	sudo service network-manager restart
 	
 	#Install EasyTether
-	wget http://www.mobile-stream.com/beta/ubuntu/18.04/easytether_0.8.9_amd64.deb
-	sudo dpkg -i easytether_0.8.9_amd64.deb
+	easyTetherVersion="0.8.9"
+	easyTetherFileName="easytether_${easyTetherVersion}_amd64.deb"
+	wget http://www.mobile-stream.com/beta/ubuntu/18.04/$easyTetherFileName
+	sudo dpkg -i $easyTetherFileName
 	sudo systemctl enable systemd-networkd
 	sudo systemctl start systemd-networkd
 	#echo "source-directory interfaces.d" | sudo tee -a /etc/network/interfaces
 fi
 
 #Install non-repo packages
+
+#Terraform
+terraformVersion="0.12.20"
+terraformZipName="terraform_${terraformVersion}_linux_amd64.zip"
+wget https://releases.hashicorp.com/terraform/$terraformVersion/$terraformZipName
+unzip $terraformZipName
+sudo mv terraform /usr/local/bin
+rm -f $terraformZipName
 
 #Postman
 #wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
@@ -261,6 +270,7 @@ code --install-extension zhuangtongfa.material-theme #One Dark Pro
 code --install-extension msjsdiag.vscode-react-native # React Native Tools
 code --install-extension chenxsan.vscode-standardjs # StandardJS - Javascript Standard Style
 code --install-extension vscode-icons-team.vscode-icons #vscode-icons
+code --install-extension mauve.terraform #terraform
 
 #SSH Keys##
 mkdir -p ~/.ssh
