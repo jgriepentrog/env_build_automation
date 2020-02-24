@@ -101,7 +101,7 @@ sudo apt-get autoremove -y
 sudo apt-get upgrade -y
 
 ##Package Installs##
-aptPkgs="net-tools build-essential python3-gpg python3-pip "
+aptPkgs="net-tools build-essential python3-gpg python3-pip ruby-dev "
 aptPkgs+="lightdm-settings arc-theme "
 aptPkgs+="gedit gthumb "
 aptPkgs+="google-chrome-stable keepass2 dropbox "
@@ -128,6 +128,8 @@ python3 -m pip install awscli --upgrade --user
 #SAM CLI Install
 python3 -m pip install aws-sam-cli --upgrade --user
 
+#gem installs
+gem install travis
 
 ##Platform Specific Installs##
 #VM
