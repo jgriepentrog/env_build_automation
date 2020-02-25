@@ -130,6 +130,7 @@ python3 -m pip install aws-sam-cli --upgrade --user
 
 #gem installs
 gem install travis
+gem install travis-conditions
 
 ##Platform Specific Installs##
 #VM
