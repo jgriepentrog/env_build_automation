@@ -274,6 +274,7 @@ code --install-extension msjsdiag.vscode-react-native # React Native Tools
 code --install-extension chenxsan.vscode-standardjs # StandardJS - Javascript Standard Style
 code --install-extension vscode-icons-team.vscode-icons #vscode-icons
 code --install-extension mauve.terraform #terraform
+code --install-extension bbenoist.vagrant # Vagrant
 
 #SSH Keys##
 mkdir -p ~/.ssh
