@@ -66,7 +66,7 @@ echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" | su
 #Dropbox - Official#
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E 
 #echo "deb [arch=amd64] https://linux.dropbox.com/ubuntu/ $codename main" | sudo tee /etc/apt/sources.list.d/dropbox.list
-echo "deb [arch=amd64] https://linux.dropbox.com/ubuntu/ cosmic main" | sudo tee /etc/apt/sources.list.d/dropbox.list
+echo "deb [arch=amd64] https://linux.dropbox.com/ubuntu/ disco main" | sudo tee /etc/apt/sources.list.d/dropbox.list
 
 #Node#
 nodeVersion=12 #Match current AWS Lambda
@@ -83,7 +83,7 @@ nodeVersion=12 #Match current AWS Lambda
 #Docker#
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 #echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $codename stable" | sudo tee /etc/apt/sources.list.d/docker.list
-echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu disco stable" | sudo tee /etc/apt/sources.list.d/docker.list
+echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu eoan stable" | sudo tee /etc/apt/sources.list.d/docker.list
    
 #Update package list to latest
 sudo apt-get update
@@ -184,7 +184,7 @@ fi
 #Install non-repo packages
 
 #Terraform
-terraformVersion="0.12.20"
+terraformVersion="0.12.24"
 terraformZipName="terraform_${terraformVersion}_linux_amd64.zip"
 wget https://releases.hashicorp.com/terraform/$terraformVersion/$terraformZipName
 unzip $terraformZipName
